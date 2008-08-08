@@ -1,32 +1,69 @@
 = yahoo-music
 
-* FIX (url)
+A Ruby wrapper for the Yahoo! Music APIs.
 
-== DESCRIPTION:
+== Example Usage
 
-FIX (describe your package)
+=== Artists:
 
-== FEATURES/PROBLEMS:
+  require 'yahoo-music'
+  include Yahoo::Music
+  Yahoo::Music.app_id = [Your App ID Here]
+  
+  artist = Artist.new("Ben Folds Five")
+  
+  puts artist.name
+  puts artist.website
+  
+  puts '*' * 40
+  puts
+  
+  puts 'Releases'
+  artist.releases.each do |release|
+    puts "\t- %s" % release.title
+  end
+  
+=== Releases & Tracks:
+  
+  require 'yahoo-music'
+  include Yahoo::Music
+  Yahoo::Music.app_id = [Your App ID Here]
+  
+  album = Album.search("The White Album").first 
+  
+  puts album.title
+  puts album.artist
+  puts "Release Date:" + album.released_on.strftime("%m/%d/%Y")
+  
+  puts '*' * 40
+  puts
+  
+  puts 'Tracks'
+  artist.tracks.each_with_index do |track, i|
+    puts "\t%d %s \t%2d:%2d" % [i, track.title, track.duration / 60, track.duration % 60]
+  end
 
-* FIX (list of features or problems)
-
-== SYNOPSIS:
-
-  FIX (code sample of usage)
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+To use this library, you must have a valid Yahoo! App ID. 
+You can get one at http://developer.yahoo.com/wsregapp/
+
+Additionally, yahoo-music has the following gem dependencies:
+
+* Hpricot >= 0.6
+* ActiveSupport >= 2.1.0
+* FlexMock >= 0.8.2
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* sudo gem install yahoo-music
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2008 FIXME full name
+Copyright (c) 2008 Mattt Thompson
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

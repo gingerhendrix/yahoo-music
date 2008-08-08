@@ -1,8 +1,8 @@
 require 'yahoo-music/version'
 
-AUTHOR = 'FIXME full name'  # can also be an array of Authors
-EMAIL = "FIXME email"
-DESCRIPTION = "description of gem"
+AUTHOR = "Mattt Thompson"
+EMAIL = "mail@matttthompson.com"
+DESCRIPTION = "yahoo-music is a wrapper to the Y! Music REST APIs"
 GEM_NAME = 'yahoo-music' # what ppl will type to install your gem
 RUBYFORGE_PROJECT = 'yahoo-music' # The unix name for your project
 HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
@@ -15,7 +15,7 @@ EXTRA_DEPENDENCIES = [
 
 @config_file = "~/.rubyforge/user-config.yml"
 @config = nil
-RUBYFORGE_USERNAME = "unknown"
+RUBYFORGE_USERNAME = "mattt"
 def rubyforge_username
   unless @config
     begin

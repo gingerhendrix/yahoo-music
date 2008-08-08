@@ -19,6 +19,11 @@ module Yahoo
     LOCALE      = "us"
     API_URL     = "http://#{LOCALE}.music.yahooapis.com/"
     API_VERSION = 'v1'
-    APP_ID      = "25BJGafV34GnIar0alwCNe6VkJfrSe4.FKqHZlzwM73lP5aCWu4K48eUEVszu3dI7aPcTwc-"    
+    
+    class << self
+      def app_id=(_id)
+        Yahoo::Music::Base::connection = REST::Connection.new(API_URL, 'app_id' => _id)
+      end
+    end
   end
 end

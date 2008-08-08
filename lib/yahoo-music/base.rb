@@ -2,7 +2,8 @@ module Yahoo
   module Music
     class Base
       class << self
-        attr_accessor :attributes, :associations
+        attr_accessor   :attributes, :associations
+        cattr_accessor  :connection
         
         def attribute(*args)
           @attributes   ||= {}
@@ -52,13 +53,9 @@ module Yahoo
         end
         
         alias_method_chain :name, :demodulization
-        
-        def connection
-          @connection ||= REST::Connection.new(API_URL)
-        end
-      
-        def fetch_and_parse(resource, options = {})          
-          options = options.update({'appid' => APP_ID})
+
+        def fetch_and_parse(resource, options = {})      
+          raise YahooWebServiceError, "No App ID specified" if connection.nil?    
           options = options.update({'response' => self.associations.join(',')}) if self.associations.any?
           return Hpricot::XML(connection.get(resource, options))
         end
@@ -134,6 +131,8 @@ module Yahoo
         return xml.collect{|elem| klass.new(elem)}
       end   
     end
+  
+    class YahooWebServiceError < StandardError; end
   
     class Artist    < Base; end
     class Category  < Base; end
