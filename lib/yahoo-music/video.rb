@@ -26,6 +26,9 @@ module Yahoo
       attribute :explicit,  Boolean
       
       attribute :copyright_year, Integer, :matcher => "copyrightYear"      
+      attribute :artists, Artist
+      attribute :categories, Category
+      attribute :images, Image
     end
   end
 end

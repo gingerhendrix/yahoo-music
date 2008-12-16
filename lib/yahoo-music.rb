@@ -7,6 +7,7 @@ require 'rest'
 require 'yahoo-music/base'
 require 'yahoo-music/version'
 
+require 'yahoo-music/image'
 require 'yahoo-music/artist'
 require 'yahoo-music/category'
 require 'yahoo-music/release'
